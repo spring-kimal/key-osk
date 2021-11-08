@@ -1,70 +1,81 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/layout">
-	<head lang="ko">
-		<meta charset="UTF-8">
-		<title>main</title>
-	</head>
-	
-	<body>
-	
-		<div layout:fragment="content">
-			<form id="sales_form" name="sales_form"  action="/api/itemAdd" method="post">
-				<table border=1>
-					<tr>
-						<td class="td_title">
-							상품아이디
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-textbox" id="itemId" name="itemId" style="width:200px">
-						</td>
-						<td class="td_title">
-							상품이름
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-textbox" id="itemName" name="itemName" style="width:200px">
-						</td>
-						<td class="td_title">
-							상품수량
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-textbox" id="itemQuantity" name="itemQuantity" style="width:200px">
-						</td>
-						<td class="td_title">
-							상품 가격
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-textbox" id="itemPrice" name="itemPrice" style="width:200px">
-						</td>
-						<td class="td_title">
-						  	카테고리
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-textbox" id="category" name="category" style="width:200px">
-						</td>					
-						<td class="td_title">
-							상품사진
-						</td>
-						<td style="padding:10px; text-align:left;">
-							<input class="easyui-filebox" id="img" name="img" style="width:300px">
-						</td>
-						
-					</tr>
-						<td colspan="4" style="padding: 10px;">
-							<button  type="submit" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px; height: 20px;">등록</button>
-							
-						</td>
-				</table>	
-					
-				<input id="itemindex" value="1" hidden="true">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head lang="ko">
+	<meta charset="UTF-8">
+	<title>main</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<th:block sec:authorize="isAuthenticated()">
+			<a sec:authorize="hasRole('admin')" th:href="@{/adduser}">사용자 추가</a>
+			<span sec:authentication="id"></span>님
+			<form name="logoutForm" th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" />
 			</form>
-			<button onClick="test()">ss</button>
-			<script>
-			function test(){
+		</th:block>
+		<form id="sales_form" name="sales_form" action="/api/itemAdd" method="post" enctype="multipart/form-data">
+			<table border=1>
+				<tr>
+					<td class="td_title">
+						상품아이디
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input class="easyui-textbox" id="itemId" name="itemId" style="width:200px">
+					</td>
+					<td class="td_title">
+						상품이름
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input class="easyui-textbox" id="itemName" name="itemName" style="width:200px">
+					</td>
+					<td class="td_title">
+						상품수량
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input class="easyui-textbox" id="itemQuantity" name="itemQuantity" style="width:200px">
+					</td>
+					<td class="td_title">
+						상품 가격
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input class="easyui-textbox" id="itemPrice" name="itemPrice" style="width:200px">
+					</td>
+					<td class="td_title">
+						카테고리
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input class="easyui-textbox" id="category" name="category" style="width:200px">
+					</td>
+					<td class="td_title">
+						상품사진
+					</td>
+					<td style="padding:10px; text-align:left;">
+						<input type="file" id="img" name="img" style="width:300px">
+					</td>
+
+				</tr>
+				<td colspan="4" style="padding: 10px;">
+					<button type="submit" class="easyui-linkbutton" iconCls="icon-ok"
+						style="width: 100px; height: 20px;">등록</button>
+
+				</td>
+			</table>
+
+			<input id="itemindex" value="1" hidden="true">
+		</form>
+		<button onClick="test()">ss</button>
+		<script>
+			function test() {
 				console.log($('#filebox_file_id_1').val());
 				console.log($('#itemId').val());
 			};
 		</script>
-		</div>
-		
-	</body>
+	</div>
+
+</body>
+
 </html>

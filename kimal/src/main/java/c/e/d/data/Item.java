@@ -13,8 +13,7 @@ public class Item {
 	String itemName;
 	int itemQuantity;
 	int itemPrice;
-	int itemindex;
-	String category;
+	int category;
 	byte[] img;
 	public String getItemName() {
 		return itemName;
@@ -34,17 +33,21 @@ public class Item {
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-	public int getItemindex() {
-		return itemindex;
-	}
-	public void setItemindex(int itemindex) {
-		this.itemindex = itemindex;
-	}
-	public String getCategory() {
+	
+	public int getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
+	}
+	public Item(int itemId, String itemName, int itemQuantity, int itemPrice, int category, byte[] img) {
+		super();
+		this.itemId = itemId;
+		this.itemName = itemName;
+		this.itemQuantity = itemQuantity;
+		this.itemPrice = itemPrice;
+		this.category = category;
+		this.img = img;
 	}
 	public byte[] getImg() {
 		return img;

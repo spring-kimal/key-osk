@@ -36,4 +36,9 @@ public class WebController {
 	public String maechool() {
 		return "maechool";
 	}
+	
+	@GetMapping("/denied")
+	public String denied() {
+		return "denied";
+	}
 }
