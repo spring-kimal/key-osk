@@ -17,7 +17,7 @@
 				<input type="submit" value="Sign Out" />
 			</form>
 		</th:block>
-		<form id="sales_form" name="sales_form" action="/api/itemAdd" method="post" enctype="multipart/form-data">
+		<form id="sales_form" name="sales_form" th:action="@{/api/itemAdd}" method="post" enctype="multipart/form-data">
 			<table border=1>
 				<tr>
 					<td class="td_title">
