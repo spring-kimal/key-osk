@@ -2,6 +2,7 @@ package c.e.d.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import c.e.d.data.Item;
+import c.e.d.data.ItemOption;
 
 @RestController
 @RequestMapping("/api")
@@ -40,4 +42,18 @@ public class Api {
 		}
 		return;
 	}
+	
+	@PostMapping("/order")
+	public void order(@RequestParam("optionlist") List<ItemOption> optionList) {
+		for(int i=0;i<optionList.size();i++) {
+			for(int j=0;j<optionList.get(i).getOptionId().length;j++) {
+				int itemId = optionList.get(i).getItemOrderId();
+				int optionId = optionList.get(i).getOptionId()[j];
+				save(itemId,optionId);
+			}
+		}
+		
+		
+	}
+	
 }
