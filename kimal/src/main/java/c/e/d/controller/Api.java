@@ -1,7 +1,10 @@
 package c.e.d.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,14 +25,19 @@ public class Api {
 						@RequestParam("itemName") String itemName,
 						@RequestParam("itemQuantity") int itemQuantity,
 						@RequestParam("itemPrice") int itemPrice,
-						@RequestParam("category") int category) {
+						@RequestParam("category") int category,
+						HttpServletRequest req) {
 		
+		String fileName = img.getOriginalFilename();
+		String safeFile = req.getSession().getServletContext().getRealPath("/") + + System.currentTimeMillis() + fileName;
+		System.out.println(safeFile);
 		try {
-//			new Item(itemId,itemName,itemQuantity,itemPrice,category,img.getBytes());
-			System.out.println(img.getOriginalFilename());
+			img.transferTo(new File(safeFile));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return;
 	}
 }
