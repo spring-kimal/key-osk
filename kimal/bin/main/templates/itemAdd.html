@@ -12,7 +12,9 @@
 	<div layout:fragment="content">
 		<th:block sec:authorize="isAuthenticated()">
 			<a sec:authorize="hasRole('admin')" th:href="@{/adduser}">사용자 추가</a>
-			<span sec:authentication="id"></span>님
+			<span sec:authentication="name"></span>님
+			<br>
+			<span sec:authentication="principal"></span>
 			<form name="logoutForm" th:action="@{/logout}" method="post">
 				<input type="submit" value="Sign Out" />
 			</form>

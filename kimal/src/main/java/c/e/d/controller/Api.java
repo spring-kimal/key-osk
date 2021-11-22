@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import c.e.d.data.Item;
-import c.e.d.data.ItemOption;
+import c.e.d.data.OrderOption;
+import c.e.d.mapper.ItemMapper;
+import c.e.d.mapper.OrderOptionMapper;
 
 @RestController
 @RequestMapping("/api")
 public class Api {
+	
+	@Autowired
+	public ItemMapper itemMapper;
+	public OrderOptionMapper orderOptionMapper;
+	
 	
 	@PostMapping("/itemAdd")
 	public void itemAdd(@RequestParam("img") MultipartFile img,
@@ -44,12 +52,12 @@ public class Api {
 	}
 	
 	@PostMapping("/order")
-	public void order(@RequestParam("optionlist") List<ItemOption> optionList) {
+	public void order(@RequestParam("optionlist") List<OrderOption> optionList) {
 		for(int i=0;i<optionList.size();i++) {
 			for(int j=0;j<optionList.get(i).getOptionId().length;j++) {
 				int itemId = optionList.get(i).getItemOrderId();
 				int optionId = optionList.get(i).getOptionId()[j];
-				save(itemId,optionId);
+				orderOptionMapper.save(itemId,optionId);
 			}
 		}
 		

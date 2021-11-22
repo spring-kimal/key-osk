@@ -13,18 +13,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import c.e.d.data.Users;
-import c.e.d.mapper.UserMapper;
+import c.e.d.data.Admin;
+import c.e.d.mapper.AdminMapper;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
-	private UserMapper userMapper;
+	private AdminMapper adminMapper;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Users> dbuser = userMapper.findById(username);
+		Optional<Admin> dbuser = adminMapper.findById(username);
 		if(dbuser.isEmpty()) {
 			throw new UsernameNotFoundException("invalid userrrr");
 		}
@@ -37,8 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		
 		UserDetails ud = User
-				.withUsername(dbuser.get().getId())
-				.password(dbuser.get().getPassword())
+				.withUsername(dbuser.get().getAdminId())
+				.password(dbuser.get().getAdminPw())
 				.authorities(auths)
 				.roles("admin")
 				.build();
