@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="c.e.d.mapper.ItemMapper">
 	<insert id="save" parameterType="Item">
-		insert into item values (#{itemId},#{itemName},#{itemQuantity},#{itemPrice},#{category},#{img})
+		insert into item values (#{itemId},#{catId},#{itemName},#{itemPrice},#{img},#{visible},#{itemSequence})
 	</insert>
 	
 	<update id="update" parameterType="Item">

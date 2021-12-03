@@ -3,7 +3,6 @@ package c.e.d.data;
 public class Users {
 	String id;
 	String password;
-	String role;
 	public String getId() {
 		return id;
 	}
@@ -16,17 +15,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public Users(String id, String password, String role) {
+	public Users(String id, String password) {
 		super();
 		this.id = id;
 		this.password = password;
-		this.role = role;
 	}
 	public Users() {
 		super();

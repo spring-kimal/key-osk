@@ -19,7 +19,7 @@ public interface OrderOptionMapper {
 	@Select("select * from order_option where optId=#{optid} and itemOrderId = #{itemOrderId}")
 	public Optional<OrderOption> findById(@Param("optid") int optid, @Param("itemOrderId") int itemOrderId);
 	
-	@Insert("Inset into order_option values (#{optid}, #{itemOrderId})")
-	public Optional<OrderOption> save(@Param("optid") int optid, @Param("itemOrderId") int itemOrderId);
+	@Insert("Insert into order_option values (#{optid}, #{itemOrderId})")
+	public void save(@Param("optid") int optid, @Param("itemOrderId") int itemOrderId);
 
 }

@@ -1,6 +1,7 @@
 package c.e.d.mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +15,7 @@ public interface ItemMapper {
 	public List<Item> findAll();
 	
 	@Select("select * from item where itemId=#{itemId}")
-	public List<Item> findById(@Param("itemId") String itemId);
+	public Optional<Item> findById(@Param("itemId") int itemId);
 	
 	public void save(Item item);
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/layout">
+	<head lang="ko">
+		<meta charset="UTF-8">
+		<title>상품조회</title>
+	</head>
+	
+	<body>
+	
+		<div layout:fragment="content">
+			<table border =1>
+				<tr>
+					<th>itemID</th>
+					<th>itemName</th>
+					<th>catId</th>
+					<th>itemPrice</th>
+					<th>visible</th>
+					<th>itemSequence</th>
+					<th>img</th>
+				</tr>
+				
+				<tr th:each="item : ${items}">
+					<td th:text="${item.itemId}"></td>
+					<td th:text="${item.itemName}"></td>
+					<td th:text="${item.catId}"></td>
+					<td th:text="${item.itemPrice}"></td>
+					<td th:text="${item.visible}"></td>
+					<td th:text="${item.itemSequence}"></td>
+					<td th:text="${item.itemImg}"></td>
+				</tr>
+			</table>
+			
+		</div>
+	
+	</body>
+</html>
