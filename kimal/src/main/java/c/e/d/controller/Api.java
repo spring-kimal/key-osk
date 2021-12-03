@@ -75,6 +75,35 @@ public class Api {
 		return true;
 	}
 	
+	@PostMapping("/update")
+	public boolean update(@RequestParam("img") MultipartFile img,
+						@RequestParam("itemId") int itemId,
+						@RequestParam("itemName") String itemName,
+						@RequestParam("itemSequence") int itemSequence,
+						@RequestParam("itemPrice") int itemPrice,
+						@RequestParam("catId") int catId,
+						@RequestParam("visible") int visible,
+						HttpServletRequest req) {
+//		if(itemMapper.findById(itemId).get() == null) {
+//			return false;
+//		}
+		
+		
+		String fileName = img.getOriginalFilename();
+		String safeFile = req.getSession().getServletContext().getRealPath("/") + + System.currentTimeMillis() + fileName;
+		System.out.println(safeFile);
+		try {
+			img.transferTo(new File(safeFile));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		itemMapper.update(new Item(itemId,itemName,itemPrice,catId,safeFile,visible,itemSequence));
+		
+		return true;
+	}
+	
 	@PostMapping("/order")
 	public void order(@RequestParam("optionlist") List<OrderOption> optionList) {
 		for(int i=0;i<optionList.size();i++) {

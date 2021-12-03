@@ -63,7 +63,7 @@
 						카테고리
 					</td>
 					<td style="padding:10px; text-align:left;">
-						<select id="catId">
+						<select name="catId">
 							<option th:each="cat : ${cats}" th:text="${cat.catName}" th:value="${cat.catId}"></option>
 						</select>
 					</td>
@@ -71,9 +71,7 @@
 						상품사진
 					</td>
 					<td style="padding:10px; text-align:left;">
-						<form enctype="multipart/form-data" id="imgform">
 							<input type="file" id="img" name="img" style="width:300px">
-						</form>
 					</td>
 				</tr>
 				<td colspan="4" style="padding: 10px;">

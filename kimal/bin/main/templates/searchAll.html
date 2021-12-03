@@ -20,7 +20,7 @@
 				</tr>
 				
 				<tr th:each="item : ${items}">
-					<td th:text="${item.itemId}"></td>
+					<td><a th:text="${item.itemId}" th:href="@{/searchAll/{itemid}(itemid=${item.itemId})}"></a></td>
 					<td th:text="${item.itemName}"></td>
 					<td th:text="${item.catId}"></td>
 					<td th:text="${item.itemPrice}"></td>

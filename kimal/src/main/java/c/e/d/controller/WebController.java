@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import c.e.d.data.Category;
 import c.e.d.data.Option_class;
@@ -33,19 +34,20 @@ public class WebController {
 	
 	@GetMapping("/searchAll")
 	public String searchAll(Model model) {
-		model.addAttribute("items",itemMapper.findAll());
+		model.addAttribute("items",itemMapper.findAlldesc());
 		return "searchAll";
 	}
 	
-	@GetMapping("/itemUpdate")
-	public String management() {
-		return "itemUpdate";
+	@GetMapping("/searchAll/{itemId}")
+	public String searchAll(Model model,@PathVariable("itemId") int itemId) {
+		model.addAttribute("cats", catMapper.findAll());
+		model.addAttribute("item",itemMapper.findById(itemId).get());
+		return "update";
 	}
 	
 	@GetMapping("/itemAdd")
 	public String itemAdd(Model model) {
-		List<Category> search = catMapper.findAll();
-		model.addAttribute("cats", search);
+		model.addAttribute("cats", catMapper.findAll());
 		return "itemAdd";
 	}
 	@GetMapping("/optAdd")
