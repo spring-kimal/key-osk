@@ -1,11 +1,19 @@
 package c.e.d.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import c.e.d.mapper.ItemMapper;
+import c.e.d.mapper.OrderOptionMapper;
 
 @Controller
 public class WebController {
-	
+	@Autowired
+	public ItemMapper itemMapper;
+	public OrderOptionMapper orderOptionMapper;	
 	
 	@GetMapping("/")
 	public String main3() {
@@ -27,9 +35,10 @@ public class WebController {
 		return "itemAdd";
 	}
 	
-	@GetMapping("pay")
+	@PostMapping("/pay")
 	public String pay() {
-		return "pay";
+		System.out.print("gd");
+		return "itemView";
 	}
 	
 	@GetMapping("maechool")
@@ -40,5 +49,11 @@ public class WebController {
 	@GetMapping("/denied")
 	public String denied() {
 		return "denied";
+	}
+	
+	@GetMapping("/itemView")
+	public String itemView(Model model) {
+		model.addAttribute("items", itemMapper.findAll());
+		return "itemView";
 	}
 }
