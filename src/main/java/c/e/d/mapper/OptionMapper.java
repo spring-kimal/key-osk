@@ -21,4 +21,7 @@ public interface OptionMapper {
 	
 	@Insert("Insert into option values (#{opt.optId}, #{opt.opclId}, #{opt.optName}, #{opt.optPrice})")
 	public void save(@Param("opt") Option opt);
+	
+	@Select("Select * from option where opclid =#{opclid} order by optPrice")
+	public List<Option> findByOpclId(@Param("opclid") Integer opclid );
 }

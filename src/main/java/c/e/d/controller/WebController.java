@@ -89,4 +89,10 @@ public class WebController {
 	public String denied() {
 		return "denied";
 	}
+	
+	@GetMapping("/itemView")
+	public String itemView(Model model) {
+		model.addAttribute("items", itemMapper.findAll());
+		return "itemView";
+	}
 }
