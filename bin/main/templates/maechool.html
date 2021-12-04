@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/layout">
+	<head lang="ko">
+		<meta charset="UTF-8">
+		<title>상품조회</title>
+	</head>
+	
+	<body>
+	
+		<div layout:fragment="content">
+			<table border =1>
+				<tr>
+					<th>payID</th>
+					<th>payPrice</th>
+					<th>payTime</th>
+					<th>ordNumber</th>
+				</tr>
+				
+				<tr th:each="pay : ${pays}">
+					<td><a th:text="${pay.payId}" th:href="@{/pay/{payId}(payId=${pay.payId})}"></a></td>
+					<td th:text="${pay.payPrice}"></td>
+					<td th:text="${pay.payTime}"></td>
+					<td th:text="${pay.ordNumber}"></td>
+				</tr>
+			</table>
+			
+		</div>
+	
+	</body>
+</html>
