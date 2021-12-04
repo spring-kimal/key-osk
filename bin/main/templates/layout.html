@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head></head>
+
+<body>
+	
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+	
+	<script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	
+	<header>
+		<p><a href="/">메인</a>  <a href="/pay">결제</a> <a href="/searchAll">재고검색</a> <a
+				href="/itemAdd">상품추가</a> <a href="/maechool">매출 확인</a> </p>
+
+	</header>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<th:block sec:authorize="isAuthenticated()">
+			<a sec:authorize="hasRole('admin')" th:href="@{/adduser}">사용자 추가</a>
+			<span sec:authentication="name"></span>님
+			<br>
+			<span sec:authentication="principal"></span>
+			<form name="logoutForm" th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" />
+			</form>
+		</th:block>
+	<div layout:fragment="content"></div>
+
+</body>
