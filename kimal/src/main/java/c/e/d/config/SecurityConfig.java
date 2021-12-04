@@ -31,13 +31,13 @@ public class SecurityConfig {
 		
 		public void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
-//			System.out.println(passwordEncoder().encode("1111"));
+			System.out.println(passwordEncoder().encode("1111"));
 		}
 		
 		public void configure(HttpSecurity http) throws Exception {
 			http
 				.authorizeRequests()
-					//.antMatchers("/mypoint/**").hasAnyAuthority("QUERY","WRITE")//�젒洹쇨텒�븳
+					//.antMatchers("/mypoint/**").hasAnyAuthority("QUERY","WRITE")//접근권한
 					.antMatchers("/searchAll", "/itemUpdate", "/itemAdd", "maechool").hasRole("admin")
 					.antMatchers("/**").permitAll()
 					.anyRequest().authenticated()

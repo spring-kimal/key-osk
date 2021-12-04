@@ -4,22 +4,22 @@
 
 <head lang="ko">
 	<meta charset="UTF-8">
-	<title>main</title>
+	<title>Item Add</title>
 </head>
 
 <body>
 
 	<div layout:fragment="content">
-		<th:block sec:authorize="isAuthenticated()">
-			<a sec:authorize="hasRole('admin')" th:href="@{/adduser}">사용자 추가</a>
-			<span sec:authentication="name"></span>님
-			<br>
-			<span sec:authentication="principal"></span>
-			<form name="logoutForm" th:action="@{/logout}" method="post">
-				<input type="submit" value="Sign Out" />
-			</form>
-		</th:block>
-		<form id="sales_form" name="sales_form" th:action="@{/api/itemAdd}" method="post" enctype="multipart/form-data">
+		
+		<div>
+			<ul>
+				<li><a href="/itemAdd">메뉴 추가</a></li>
+				<li><a href="/catAdd">카테고리 추가</a></li>
+				<li><a href="/optAdd">옵션 추가</a></li>
+				<li><a href="/ingAdd">재료 추가</a></li>
+			</ul>
+		</div>
+		<form form id="sales_form" name="sales_form" th:action="@{/api/itemAdd}" method="post" enctype="multipart/form-data">
 			<table border=1>
 				<tr>
 					<td class="td_title">
@@ -35,11 +35,16 @@
 						<input class="easyui-textbox" id="itemName" name="itemName" style="width:200px">
 					</td>
 					<td class="td_title">
-						상품수량
+						상품순서
 					</td>
 					<td style="padding:10px; text-align:left;">
-						<input class="easyui-textbox" id="itemQuantity" name="itemQuantity" style="width:200px">
+						<input class="easyui-textbox" id="itemSequence" name="itemSequence" style="width:200px">
 					</td>
+					
+
+
+				</tr>
+				<tr>
 					<td class="td_title">
 						상품 가격
 					</td>
@@ -50,32 +55,33 @@
 						카테고리
 					</td>
 					<td style="padding:10px; text-align:left;">
-						<input class="easyui-textbox" id="category" name="category" style="width:200px">
+						<select name="catId">
+							<option th:each="cat : ${cats}" th:text="${cat.catName}" th:value="${cat.catId}"></option>
+						</select>
 					</td>
 					<td class="td_title">
 						상품사진
 					</td>
 					<td style="padding:10px; text-align:left;">
-						<input type="file" id="img" name="img" style="width:300px">
+							<input type="file" id="img" name="img" style="width:300px">
 					</td>
-
 				</tr>
-				<td colspan="4" style="padding: 10px;">
-					<button type="submit" class="easyui-linkbutton" iconCls="icon-ok"
-						style="width: 100px; height: 20px;">등록</button>
+				<td class="td_title">
+						상품옵션
+					</td>
+				<td style="padding:10px; text-align:left;">
+					
+							<input name="ingId"type="checkbox" th:each="ing : ${ings}" th:text="${ing.ingName}" th:value="${ing.ingId}"></option>
+						
 
 				</td>
 			</table>
+			<button type="submit" class="easyui-linkbutton" iconCls="icon-ok"
+						style="width: 100px; height: 20px;" id="submit">등록</button>
 
-			<input id="itemindex" value="1" hidden="true">
 		</form>
-		<button onClick="test()">ss</button>
-		<script>
-			function test() {
-				console.log($('#filebox_file_id_1').val());
-				console.log($('#itemId').val());
-			};
-		</script>
+
+		
 	</div>
 
 </body>
