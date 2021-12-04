@@ -21,6 +21,9 @@ public interface ItemMapper {
 	@Select("select * from item where itemId=#{itemId}")
 	public Optional<Item> findById(@Param("itemId") int itemId);
 	
+	@Select("select * from item where catId=#{catId}")
+	public List<Item> findBycatId(@Param("catId") Integer catId);
+	
 	public void save(Item item);
 	
 	public void update(Item item);

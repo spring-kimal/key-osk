@@ -1,17 +1,13 @@
 package c.e.d.data;
 
 public class OrderOption {
-	int[] optionId;
+	int optId;
 	int itemOrderId;
-	public OrderOption() {
-		super();
-		// TODO Auto-generated constructor stub
+	public int getOptId() {
+		return optId;
 	}
-	public int[] getOptionId() {
-		return optionId;
-	}
-	public void setOptionId(int[] optionId) {
-		this.optionId = optionId;
+	public void setOptId(int optId) {
+		this.optId = optId;
 	}
 	public int getItemOrderId() {
 		return itemOrderId;
@@ -19,9 +15,14 @@ public class OrderOption {
 	public void setItemOrderId(int itemOrderId) {
 		this.itemOrderId = itemOrderId;
 	}
-	public OrderOption(int[] optionId, int itemOrderId) {
+	
+	public OrderOption(int optId, int itemOrderId) {
 		super();
-		this.optionId = optionId;
+		this.optId = optId;
 		this.itemOrderId = itemOrderId;
 	}
+
+	
+	
+	
 }
